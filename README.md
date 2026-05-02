@@ -463,11 +463,3 @@ docker push yourdockerhubuser/vercel-proxy-service:latest
    └── Project re-queued automatically → full rebuild cycle repeats
 ```
 ---
-
-## Demo Video (Click the image to see a demo video)
-
-<p align="center">
-  <a href="https://assets-priyanshuvaliya.s3.ap-south-1.amazonaws.com/Vercel.mp4">
-    <img src="https://raw.githubusercontent.com/PriyanshuValiya/vercel-v-2/main/Vercel.png" />
-  </a>
-</p>
