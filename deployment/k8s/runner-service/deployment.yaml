@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runner-service
+  namespace: vercel
+  labels:
+    app: runner-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: runner-service
+  template:
+    metadata:
+      labels:
+        app: runner-service
+    spec:
+      hostPID: true
+      containers:
+        - name: runner-service
+          image: priyanshuvaliya18/vercel-runner-service:latest
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+          envFrom:
+            - secretRef:
+                name: secret-runner-service
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "1000m"
+          volumeMounts:
+            - name: docker-sock
+              mountPath: /var/run/docker.sock
+            - name: builds
+              mountPath: /home/ubuntu/vercel/builds
+            - name: nginx-conf
+              mountPath: /etc/nginx/conf.d
+            - name: ssl-certs
+              mountPath: /etc/ssl/cloudflare
+              readOnly: true
+      volumes:
+        - name: docker-sock
+          hostPath:
+            path: /var/run/docker.sock
+            type: Socket
+        - name: builds
+          hostPath:
+            path: /home/ubuntu/vercel/builds
+            type: DirectoryOrCreate
+        - name: nginx-conf
+          hostPath:
+            path: /etc/nginx/conf.d
+            type: DirectoryOrCreate
+        - name: ssl-certs
+          hostPath:
+            path: /etc/ssl/cloudflare
+            type: DirectoryOrCreate

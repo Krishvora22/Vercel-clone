@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/controllers/projectcontroller.ts","./src/controllers/proxycontroller.ts","./src/routes/projectroutes.ts","./src/test/testredis.ts","./src/types/types.ts","./src/utils/redis.ts","./src/utils/supabase.ts"],"version":"5.8.3"}

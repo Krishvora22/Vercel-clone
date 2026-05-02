@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./server
+    container_name: vercel_server
+    ports:
+      - "4500:4500"
+    env_file:
+      - server/.env
+    restart: always
+
+  upload-service:
+    build: ./upload-service
+    container_name: vercel_upload_service
+    ports:
+      - "4000:4000"
+    env_file:
+      - upload-service/.env
+    volumes:
+      - /home/ubuntu/vercel/builds:/home/ubuntu/vercel/builds
+    depends_on:
+      - backend
+    restart: always
+
+  runner-service:
+    build: ./runner-service
+    container_name: vercel_runner_service
+    ports:
+      - "2805:2805"
+    env_file:
+      - runner-service/.env
+    privileged: true
+    pid: "host"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/ubuntu/vercel/builds:/home/ubuntu/vercel/builds
+      - /etc/nginx/conf.d:/etc/nginx/conf.d
+      - /etc/ssl/cloudflare:/etc/ssl/cloudflare:ro
+    depends_on:
+      - upload-service
+      - backend
+    restart: always
+
+  proxy-service:
+    build: ./proxy-service
+    container_name: vercel_proxy_service
+    network_mode: "host"
+    env_file:
+      - proxy-service/.env
+    restart: always
+
+  # frontend:
+  #   build: ./www
+  #   container_name: vercel_frontend
+  #   ports:
+  #     - "3000:3000"
+  #   env_file:
+  #     - www/.env
+  #   restart: always
+  #   depends_on:
+  #     - backend

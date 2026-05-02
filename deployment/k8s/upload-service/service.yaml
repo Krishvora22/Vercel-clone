@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: upload-service
+  namespace: vercel
+  labels:
+    app: upload-service
+spec:
+  selector:
+    app: upload-service
+  ports:
+    - name: http
+      port: 4000
+      targetPort: 4000
+      protocol: TCP
+  type: ClusterIP

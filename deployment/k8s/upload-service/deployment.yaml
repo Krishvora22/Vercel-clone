@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upload-service
+  namespace: vercel
+  labels:
+    app: upload-service
+spec:
+  replicas: 2          
+  selector:
+    matchLabels:
+      app: upload-service
+  template:
+    metadata:
+      labels:
+        app: upload-service
+    spec:
+      containers:
+      - name: upload-service
+        image: priyanshuvaliya18/vercel-upload-service:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 4000
+        envFrom:
+          - secretRef:
+              name: secret-upload-service
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        volumeMounts:
+          - name: builds
+            mountPath: /home/ubuntu/vercel/builds
+      volumes:
+        - name: builds
+          hostPath:
+            path: /home/ubuntu/vercel/builds
+            type: DirectoryOrCreate
