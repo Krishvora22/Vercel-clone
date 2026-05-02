@@ -10,7 +10,7 @@ const app = express();
 const PORT = 4500;
 
 const allowedOrigins = [
-  "https://vercel.priyanshuvaliya.dev",
+  "https://vercel.krisvora.me",
   "http://localhost:3000",
   "https://vercel-v-2.vercel.app",
   "https://mini-vercel.krisvora.me"

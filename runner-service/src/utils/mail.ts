@@ -33,7 +33,7 @@ export const sendDeploymentMail = async ({
     if (errorUserData) throw new Error("Can't find User to mail !!");
 
     const { error } = await resend.emails.send({
-      from: "vercel@notifications.priyanshuvaliya.dev",
+      from: "vercel@notifications.krisvora.me",
       to: userData.email,
       subject: `${projectName} Deployed Successfully`,
       html: `

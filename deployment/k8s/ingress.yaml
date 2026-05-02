@@ -11,7 +11,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: api-vercel.priyanshuvaliya.dev
+    - host: api-vercel.krisvora.me
       http:
         paths:
           - path: /
@@ -22,7 +22,7 @@ spec:
                 port:
                   number: 4500
 
-    - host: "*.priyanshuvaliya.dev"
+    - host: "*.krisvora.me"
       http:
         paths:
           - path: /

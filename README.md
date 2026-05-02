@@ -66,7 +66,7 @@ The system is composed of four independent microservices coordinated via a Redis
                                                │ HTTPS API calls
                                                ▼
                         ┌─────────────────────────────────────────────────┐
-                        │         api-vercel.priyanshuvaliya.dev          │
+                        │         api-vercel.krisvora.me          │
                         │                SERVER (port 4500)               │
                         │    Express API — manages projects, queues jobs  │
                         └────────┬──────────────────────┬─────────────────┘
@@ -101,7 +101,7 @@ The system is composed of four independent microservices coordinated via a Redis
                                │
                                ▼
                    ┌──────────────────────────────────────────────────────┐
-                   │       *.priyanshuvaliya.dev (Cloudflare → EC2)       │
+                   │       *.krisvora.me (Cloudflare → EC2)       │
                    │                PROXY SERVICE (port 5000)             │
                    │  Extracts subdomain → queries Supabase for project   │
                    │  React  → 302 redirect to S3 URL                     │

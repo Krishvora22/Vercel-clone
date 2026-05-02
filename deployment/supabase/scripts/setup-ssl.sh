@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-DOMAIN="supabase.priyanshuvaliya.dev"
+DOMAIN="supabase.krisvora.me"
 
 log() { echo "[SSL] $1"; }
 err() { echo "[ERROR] $1"; exit 1; }

@@ -184,8 +184,8 @@ echo "── Ingress ───────────────────�
 $SSH "kubectl get ingress -n vercel"
 echo ""
 echo -e "${YELLOW}Update Cloudflare DNS A records to: $EC2${NC}"
-echo "   api-vercel.priyanshuvaliya.dev  → $EC2"
-echo "   *.priyanshuvaliya.dev           → $EC2"
+echo "   api-vercel.krisvora.me  → $EC2"
+echo "   *.krisvora.me           → $EC2"
 echo ""
 
 echo ""
